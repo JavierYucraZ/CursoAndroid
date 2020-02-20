@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MiPrimeraApp</string>
+    <string name="Saludo">Hola desde mi primera aplicacion movil</string>
+</resources>
