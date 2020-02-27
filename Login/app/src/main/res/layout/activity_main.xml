@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/fondo">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bienvenido"
+                    android:textSize="50sp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tu red social Favorita"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Registrate"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:layout_marginTop="25dp"
+                    android:textStyle="bold"/>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre Completo"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:inputType="textCapWords"
+                    android:textColorHint="#fff"
+                    android:backgroundTint="#fff"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawableTint="#fff"
+                    android:drawablePadding="20dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo Electronico"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="#fff"
+                    android:backgroundTint="#fff"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawableTint="#fff"
+                    android:drawablePadding="20dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese su Telefono"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:inputType="number"
+                    android:textColorHint="#fff"
+                    android:backgroundTint="#fff"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawableTint="#fff"
+                    android:drawablePadding="20dp"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registrarse"
+                    android:layout_gravity="center"
+                    android:paddingLeft="60dp"
+                    android:paddingRight="60dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="25sp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/boton"
+                    android:textColor="#fff"
+                    android:drawableRight="@drawable/ic_save"
+                    android:drawableTint="#fff"
+                    android:drawablePadding="20dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Politicas de privacidad"
+            android:textSize="15sp"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Al terminar el registro estas de acuerdo con nuestras poiiticas de privacidad"
+            android:textSize="15sp"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
