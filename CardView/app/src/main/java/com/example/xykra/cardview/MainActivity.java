@@ -1,4 +1,4 @@
-package com.example.xykra.loggin;
+package com.example.xykra.cardview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
-
     }
 }
