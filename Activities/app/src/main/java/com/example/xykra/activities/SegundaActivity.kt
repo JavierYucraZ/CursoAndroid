@@ -22,6 +22,12 @@ class SegundaActivity : AppCompatActivity() {
 
         }
 
+        try{
+            etCajaTexto.setText((bundle!!.getString("valor3","")))
+        }catch (e : Exception){
+
+        }
+
         btnRespuesta.setOnClickListener{
             val intent = Intent()
             intent.putExtra("respuesta", etCajaTexto.text.toString())

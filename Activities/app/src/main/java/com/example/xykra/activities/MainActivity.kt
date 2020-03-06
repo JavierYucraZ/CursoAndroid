@@ -1,12 +1,19 @@
 package com.example.xykra.activities
 
+import android.Manifest
 import android.app.Activity
+import android.app.SearchManager
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() , View.OnClickListener {
 
@@ -45,7 +52,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
 
     override fun onClick( view : View? ) {
         when(view!!.id){
-            /*
+
             ibAbrirMarcado.id -> abrirMarcado()
             ibLlamar.id -> llamar()
             ibAbrirGoogleMaps.id -> abrirGoogleMaps()
@@ -57,7 +64,6 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
             ibAbrirApp.id -> abrirApp()
             ibAsignarWallpaper.id -> asignarWallpaper()
 
-             */
         }
     }
 
@@ -92,7 +98,100 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
                 Toast.makeText(this, "Se cancelo la respuesta", Toast.LENGTH_LONG).show()
             }
         }
+
     }
+
+    fun abrirMarcado(){
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:70190260")
+        startActivity(intent)
+    }
+
+    fun abrirGoogleMaps(){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse("geo:-16.501688,-68.1327745")
+        startActivity(intent)
+    }
+
+    fun abrirStreetView(){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse("google.streetview:cbll=-16.501688,-68.1327745")
+        startActivity(intent)
+    }
+
+    fun abrirPaginaWeb(){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse("https://www.google.com")
+        startActivity(intent)
+    }
+
+    fun abrirBuscador(){
+        val intent = Intent(Intent.ACTION_WEB_SEARCH)
+        intent.putExtra(SearchManager.QUERY, "Android")
+        startActivity(intent)
+    }
+
+    fun compartirTexto(){
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, "Hola a todos")
+        startActivity(intent)
+    }
+
+    fun enviarEmail(){
+        val TO = arrayOf("yucrazj@gmail.com")
+        val CC = arrayOf("info@example.com")
+        val asunto = "Correo Importante"
+        val contenido = "Este es un correo electronico de prueba"
+
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.type = "text/plain"
+        intent.data = Uri.parse("mailto:")
+
+        intent.putExtra(Intent.EXTRA_EMAIL, TO)
+        intent.putExtra(Intent.EXTRA_CC, CC)
+        intent.putExtra(Intent.EXTRA_SUBJECT, asunto)
+        intent.putExtra(Intent.EXTRA_TEXT, contenido)
+
+        startActivity(Intent.createChooser(intent, "Enviar correo (demo)"))
+
+    }
+
+    fun abrirApp(){
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.setClassName("com.example.xykra.relativelayout",
+            "com.example.xykra.relativelayout.MainActivity")
+        startActivity(intent)
+    }
+
+    fun asignarWallpaper(){
+        val intent = Intent(Intent.ACTION_SET_WALLPAPER)
+        startActivity(Intent.createChooser(intent, "Asignar un wallpaper"))
+    }
+
+    fun llamar(){
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), PERMISO_LLAMADA)
+        } else {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:70190260")
+            startActivity(intent)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            PERMISO_LLAMADA -> if (grantResults.isEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                llamar()
+            } else {
+                Toast.makeText(this, "Permiso denegado", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+
+
 
 
 
