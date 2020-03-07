@@ -13,6 +13,12 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
 
 
 class MainActivity : AppCompatActivity() , View.OnClickListener {
@@ -158,15 +164,44 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
     }
 
     fun abrirApp(){
+
+        /* Abrir Facebook*/
         val intent = Intent(Intent.ACTION_MAIN)
-        intent.setClassName("com.example.xykra.relativelayout",
-            "com.example.xykra.relativelayout.MainActivity")
+        intent.setClassName("com.facebook.katana",
+            "com.facebook.katana.LoginActivity")
+        Toast.makeText(this, "Abriendo Facebook", Toast.LENGTH_SHORT).show()
         startActivity(intent)
+
+        /*Abrir Whatsapp
+        val launchIntent = packageManager.getLaunchIntentForPackage("com.whatsapp")
+        startActivity(launchIntent)
+        */
+
+        /*Abrir Instagram
+        val uri = Uri.parse("https://instagram.com/")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+
+        intent.setPackage("com.instagram.android")
+        startActivity(intent)
+        */
+
     }
 
     fun asignarWallpaper(){
         val intent = Intent(Intent.ACTION_SET_WALLPAPER)
         startActivity(Intent.createChooser(intent, "Asignar un wallpaper"))
+    }
+
+
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            PERMISO_LLAMADA -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                llamar()
+            } else {
+                Toast.makeText(this, "Permiso denegado", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun llamar(){
@@ -177,16 +212,6 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
             val intent = Intent(Intent.ACTION_CALL)
             intent.data = Uri.parse("tel:70190260")
             startActivity(intent)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
-            PERMISO_LLAMADA -> if (grantResults.isEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                llamar()
-            } else {
-                Toast.makeText(this, "Permiso denegado", Toast.LENGTH_LONG).show()
-            }
         }
     }
 
